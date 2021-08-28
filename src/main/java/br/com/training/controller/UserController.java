@@ -1,6 +1,7 @@
 package br.com.training.controller;
 
-import br.com.training.model.User;
+import br.com.training.dto.UserForm;
+import br.com.training.dto.UserResponse;
 import br.com.training.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,11 +20,11 @@ public class UserController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public User createUser(@RequestBody @Valid User user) {
-		return userService.createUser(user);
+	public UserResponse createUser(@RequestBody @Valid UserForm userForm) {
+		return userService.createUser(userForm.toObj());
 	}
 
-	@GetMapping (value = "/{cpf}")
+	@GetMapping(value = "/{cpf}")
 	@ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?>getUser (@PathVariable String cpf){
         return ResponseEntity.ok(userService.getUser(cpf));
@@ -31,8 +32,8 @@ public class UserController {
 
 	@PutMapping(value = "/{cpf}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<?> updateUser(@PathVariable String cpf, @RequestBody @Valid User user){
-		User userUpdated = userService.updateUser(cpf, user);
+	public ResponseEntity<?> updateUser(@PathVariable String cpf, @RequestBody @Valid UserForm userForm){
+		UserResponse userUpdated = userService.updateUser(cpf, userForm.toObj());
 		return ResponseEntity.ok(userUpdated);
 	}
 
