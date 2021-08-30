@@ -19,7 +19,7 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
+	//@ResponseStatus(HttpStatus.CREATED)
 	public UserResponse createUser(@RequestBody @Valid UserForm userForm) {
 		return userService.createUser(userForm.toObj());
 	}

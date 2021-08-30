@@ -1,15 +1,22 @@
 package br.com.training.dto;
 
 import br.com.training.model.User;
+import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 public class UserForm {
 
     private String name;
 
+    @Email(message = "Email é inválido")
+    @NotBlank(message = "Email é obrigatório")
     private String email;
 
+    @CPF(message = "CPF é invalido")
+    @NotBlank(message = "CPF é obrigatório")
     private String cpf;
 
     private LocalDate birthDate;
