@@ -14,11 +14,11 @@ public class UserForm {
     private String name;
 
     @Email(message = "Email é inválido")
-    @KeyUnique(message = "Email já existe")
+    @KeyUnique
     private String email;
 
     @CPF(message = "CPF é inválido")
-    @KeyUnique(message = "CPF já existe")
+    @KeyUnique
     private String cpf;
 
     private LocalDate birthDate;
