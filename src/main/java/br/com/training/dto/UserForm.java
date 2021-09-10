@@ -1,7 +1,6 @@
 package br.com.training.dto;
 
-import br.com.training.annotation.CpfNotExist;
-import br.com.training.annotation.EmailNotExist;
+import br.com.training.annotation.KeyUnique;
 import br.com.training.model.User;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -15,11 +14,11 @@ public class UserForm {
     private String name;
 
     @Email(message = "Email é inválido")
-    @EmailNotExist(message = "Email Repetido")
+    @KeyUnique(message = "Email já existe")
     private String email;
 
     @CPF(message = "CPF é inválido")
-    @CpfNotExist(message = "CPF Repetido")
+    @KeyUnique(message = "CPF já existe")
     private String cpf;
 
     private LocalDate birthDate;
